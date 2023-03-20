@@ -286,14 +286,14 @@
                                                                 </label>
                                                                 <select class="form-select" data-bs-toggle="tooltip"
                                                                         title="hold Lctrl for multiselect" name="roles"
-                                                                        th:value="${allRoles}" multiple
+                                                                        th:value="${user.getRoles()}" multiple
                                                                         style="max-height: 70px;min-height: 40px;"
                                                                         disabled="disabled">
                                                                     <option style="font-weight: lighter"
-                                                                            th:value="${allRoles.get(0).getId()}">ADMIN
+                                                                            th:value="ROLE_ADMIN">ADMIN
                                                                     </option>
                                                                     <option style="font-weight: lighter"
-                                                                            th:value="${allRoles.get(1).getId()}">USER
+                                                                            th:value="ROLE_USER">USER
                                                                     </option>
                                                                 </select>
                                                             </div>
@@ -377,8 +377,8 @@
                                 <select required class="form-select" data-bs-toggle="tooltip"
                                         title="hold Lctrl for multiselect" th:field="*{roles}" multiple
                                         style="max-height: 70px;min-height: 40px;">
-                                    <option style="font-weight: lighter" th:value="${user.getRoles()}">ADMIN</option>
-                                    <option style="font-weight: lighter" th:value="2">USER</option>
+                                    <option style="font-weight: lighter" th:value="${allRoles.get(0).getId()}">ADMIN</option>
+                                    <option style="font-weight: lighter" th:value="${allRoles.get(1).getId()}">USER</option>
                                 </select>
                             </div>
                         </div>

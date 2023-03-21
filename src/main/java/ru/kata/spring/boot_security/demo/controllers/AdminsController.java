@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminsController {
 
     private final UserService userService;
@@ -24,7 +25,7 @@ public class AdminsController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public String showAllUsers(Model model, Principal principal) {
         model.addAttribute("user", userService.findByUsername(principal.getName()));
         model.addAttribute("users", userService.findAll());
@@ -33,21 +34,21 @@ public class AdminsController {
         return "admin";
     }
 
-    @PatchMapping("admin/{id}")
+    @PatchMapping("/{id}")
     public String update(@ModelAttribute User user, @PathVariable("id") Long id) {
         userService.update(id, user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
-    @DeleteMapping("admin/{id}")
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
-    @PostMapping("admin/create")
+    @PostMapping("/create")
     public String create(@ModelAttribute("user") @Valid User user) {
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 }
